@@ -2,25 +2,26 @@
 -- ingestion ⏱ ~1m30
 copy (
 	select *
-	from read_csv('C:\Users\agiraud\Desktop\keyrus\damir\input/A202401.csv.gz')
-) to 'C:\Users\agiraud\Desktop\keyrus\damir\input/A202401.parquet'
+	from read_csv('input/A202401.csv.gz')
+) to 'input/A202401.parquet';
 
 -- ça donne quoi en .csv :p
-copy (from 'C:\Users\agiraud\Desktop\keyrus\damir\input/A202401.parquet')
-to 'C:\Users\agiraud\Desktop\keyrus\damir\input/A202401.csv'
+copy (from 'input/A202401.parquet')
+to 'input/A202401.csv';
 
--- recap des volumes 🐘
--- .csv.gz : ~1Go
--- .csv : ~6Go
--- .parquet : ~2Go
+-- recap des volumes pour janvier 2024 🐘
+-- 38 millions de lignes
+-- .csv.gz   1Go
+-- .csv      6.5Go
+-- .parquet  1.8Go
 
 -- ⏱ ~1m30
-summarize from 'C:\Users\agiraud\Desktop\keyrus\damir\input/A202401.parquet'
+summarize from 'input/A202401.parquet';
 
 -- tronche des données
 select *
-from 'C:\Users\agiraud\Desktop\keyrus\damir\input/A202401.parquet'
-limit 100
+from 'input/A202401.parquet'
+limit 100;
 
 -----------------------------------------------------------------
 
@@ -47,9 +48,9 @@ copy (
 		FLT_REM_MNT,
 		FLT_ACT_QTE,
 		FLT_PAI_MNT,
-	from 'C:\Users\agiraud\Desktop\keyrus\damir\input/A202401.parquet'
+	from 'input/A202401.parquet'
 	order by 1,2,3
-) to 'C:\Users\agiraud\Desktop\keyrus\damir\input/A202401_fewColumns2.parquet'
+) to 'input/A202401_fewColumns2.parquet'
 
 
-summarize from 'C:\Users\agiraud\Desktop\keyrus\damir\input/A202401_fewColumns.parquet'
+summarize from 'input/A202401_fewColumns.parquet'
