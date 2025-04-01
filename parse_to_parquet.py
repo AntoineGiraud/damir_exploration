@@ -3,7 +3,7 @@ import os
 from timer import Timer
 from loguru import logger
 
-logger.add("log_file.log", format="{time:HH:mm:ss} {level} {message}")
+logger.add("logs/damir_csv_to_parquet_{time:YYYY-MM-dd}.log", format="{time:YYYY-mm-dd HH:mm:ss} {level} {message}")
 
 
 def list_files(folder: str, pattern: str = ".csv.gz") -> dict[str]:

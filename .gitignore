@@ -5,13 +5,15 @@ build/
 dist/
 wheels/
 *.egg-info
+uv.lock
 
 # Virtual environments
 .venv
-*.csv.gz
-uv.lock
-*.db
-docs/memoire_2018_MEKONTSO.pdf
-docs/memoire_2022_BOYER.pdf
+
+# data files
 *.log
-*.parquet
+*.db
+*.csv.gz
+input/**/*.parquet
+input/**/*.csv
+docs/memoire*.pdf
