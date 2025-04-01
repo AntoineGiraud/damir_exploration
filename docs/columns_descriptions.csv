@@ -1,0 +1,124 @@
+Nom variable,Libellé,Catégorie,Commentaires,Modalités
+AGE_BEN_SNDS,Tranche d'Age Bénéficiaire au moment des soins,BENEFICIAIRE,L’âge du bénéficiaire au moment des soins est calculé ainsi : (Année/Mois de début des soins) – (Année/Mois de naissance du bénéficiaire). Il est ensuite regroupé en tranche d’âge,->
+ASU_NAT,Nature d'Assurance,PRESTATION,,->
+ATT_NAT,Nature de l'Accident du Travail,PRESTATION,,->
+BEN_CMU_TOP,"Top Bénéficiaire CMU-C<span style=""font-family: Arial;font-size: 13px;color: #FF0000;""> </span>",BENEFICIAIRE,"Jusqu'àu mois de mars 2021,vaut ‘1’ (=‘OUI’) si la prestation qui a fait l’objet du remboursement est prise en charge au titre de la CMU-Complémentaire ET si cette prestation n’est pas exonérée du ticket modérateur pour un autre motif (exemple : ALD) car ce dernier prime sur le TOP CMU-C pour le remboursement de la prestation. A partir d'avril 2021,vaut ‘1’ (=‘OUI’) si la prestation qui a fait l’objet du remboursement est prise en charge au titre de la C2S ET si cette prestation n’est pas exonérée du ticket modérateur pour un autre motif (exemple : ALD) car ce dernier prime sur la C2S pour le remboursement de la prestation.",->
+BEN_QLT_COD,Qualité du Bénéficiaire,BENEFICIAIRE,,->
+BEN_RES_REG,Région de Résidence du Bénéficiaire à partir de 2015 (tables A),BENEFICIAIRE,,->
+BEN_RES_ZEAT,ZEAT de Résidence du Bénéficiaire  jusqu'à 2014 (tables P),BENEFICIAIRE,,->
+BEN_SEX_COD,Sexe du Bénéficiaire,BENEFICIAIRE,,->
+CPL_COD,Complément d'Acte,PRESTATION,"Uniquement des compléments d'actes Nuit, Férié, Urgences",->
+CPT_ENV_TYP,Type d'Enveloppe,PRESTATION,"Le type d’enveloppe = 1 correspond aux dépenses de soins de ville. Il s’agit des honoraires et des prescriptions des professionnels de santé libéraux :
+• Les honoraires et prescriptions des cabinets de ville;
+• Les honoraires et prescriptions des cliniques privées;
+• Les honoraires er prescriptions des centres de santé.
+
+Le type d’enveloppe = 2 correspond aux versements aux établissements de santé publics, privés et médico-sociaux.
+ 
+ONDAM (Objectif National des Dépenses d’Assurance Maladie) voté chaque année dans le cadre de la Loi de Financement de la Sécurité Sociale = Enveloppes 1 + 2.
+
+Le type d’enveloppe = 3 correspond aux prestations légales Assurance Maladie hors enveloppe ONDAM.",->
+DDP_SPE_COD,Discipline de Prestation Etb Exécutant,EXECUTANT,,->
+DRG_AFF_NAT,Nature du Destinataire de Règlement affiné,PRESTATION,,->
+ETE_CAT_SNDS,Catégorie Etb Exécutant,EXECUTANT,,->
+ETE_IND_TAA,Indicateur TAA Privé/Public,PRESTATION,"La dimension « Indicateur TAA » permet de cibler les prestations en facturation directe à l’Assurance maladie : Actes et Consultations Externes. Pour les cibler, il faut prendre l'indicateur TAA public.",->
+ETE_REG_COD,Région d'Implantation Etb Exécutant à partir de 2015 (tables A),EXECUTANT,,->
+ETE_TYP_SNDS,Type Etb Exécutant,EXECUTANT,,->
+ETE_ZEAT_COD,ZEAT d'Implantation Etb Exécutant  jusqu'à 2014 (tables P),EXECUTANT,,->
+ETP_CAT_SNDS,Catégorie Etb Prescripteur,PRESCRIPTEUR,,->
+ETP_REG_COD,Région d'Implantation Etb Prescripteur à partir de 2015 (tables A),PRESCRIPTEUR,,->
+ETP_ZEAT_COD,ZEAT d'Implantation Etb Prescripteur  jusqu'à 2014 (tables P),PRESCRIPTEUR,,->
+EXE_INS_REG,Région du PS Exécutant à partir de 2015 (tables A),EXECUTANT,Informe de la région d’exécution de la prestation par un professionnel de santé dans un cabinet qu’il soit principal ou secondaire.,->
+EXE_INS_ZEAT,ZEAT du PS Exécutant  jusqu'à 2014 (tables P),EXECUTANT,,->
+EXO_MTF,Motif d'Exonération du Ticket Modérateur,PRESTATION,"Pour connaitre les bénéficiaires en ALD, il faut prendre les EXO_MTF = 41 à 46.",->
+FLT_ACT_COG,Coefficient Global de la Prestation Préfiltré,INDICATEURS PREFILTRES,"Le coefficient global est préfiltré sur le type de remboursement (PRS_REM_TYP) 0, il contient déjà le coefficient global de tous les types de remboursement.
+ 
+NB : Si ce filtre n'est pas fait, les coefficients seront doublés.
+
+Il représente un volume : quantité x coefficient tarifé de l'acte.",
+FLT_ACT_NBR,Dénombrement de la Prestation Préfiltré,INDICATEURS PREFILTRES,"Le dénombrement est préfiltré sur le type de remboursement (PRS_REM_TYP) 0, il contient déjà le dénombrement de tous les types de remboursement.
+ 
+NB : Si ce filtre n'est pas fait, les dénombrements seront doublés.
+
+Attention, il faut privilégier la quantité au dénombrement. En effet, les données du dénombrement ne sont pas remontées pour l’ensemble des régimes (elles sont remontées pour le régime général et les régimes infogérés).",
+FLT_ACT_QTE,Quantité de la Prestation Préfiltrée,INDICATEURS PREFILTRES,"La quantité est préfiltrée sur le type de remboursement (PRS_REM_TYP) 0, elle contient déjà la quantité de tous les types de remboursement.
+ 
+NB : Si ce filtre n'est pas fait, les quantités seront doublées.
+
+Pour compter des actes, il faut utiliser la variable « quantité d’actes ». Elle sert à tarifer et à calculer le remboursement selon la formule suivante : 
+Montant remboursé = base de remboursement * quantité d’actes * taux de remboursement",
+FLT_DEP_MNT,Montant du Dépassement de la Prestation Préfiltré,INDICATEURS PREFILTRES,"Le montant du dépassement est préfiltré sur le type de remboursement (PRS_REM_TYP) 0, il contient déjà la dépassement de tous les types de remboursement.
+ 
+NB : Si ce filtre n'est pas fait, les montants seront doublés.
+
+Le montant de dépassement concerne uniquement du dépassement d’honoraires de médecins, il est non alimenté lorsqu’il s’agit de produits et prestations (LPP). Dans ce dernier cas, il faut recalculer l’indicateur de la manière suivante : Dépassement = Montant payé – base de remboursement.",
+FLT_PAI_MNT,Montant de la Dépense de la Prestation Préfiltrée,INDICATEURS PREFILTRES,"Le montant de la dépense est préfiltré sur le type de remboursement (PRS_REM_TYP) 0, il contient déjà la dépense de tous les types de remboursement.
+ 
+NB : Si ce filtre n'est pas fait, les montants seront doublés.
+
+Le montant de la dépense correspond au montant payé par le patient, donc les honoraires du professionnel de santé.",
+FLT_REM_MNT,Montant Versé/Remboursé Préfiltré,INDICATEURS PREFILTRES,"Le montant remboursé est préfiltré sur le type de remboursement (PRS_REM_TYP) 0 ou 1, c'est à dire qu'il s'agit du montant remboursé de la part légale de l'Assurance Maladie.",
+FLX_ANN_MOI,Année et Mois de Traitement,PERIODE DE TRAITEMENT,Date technique qui correspond à la date de chargement des flux arrivés dans l’entrepôt émanant de tous les organismes et régimes depuis le dernier chargement,
+MDT_TYP_COD,Mode de Traitement Etb Exécutant,EXECUTANT,,->
+MFT_COD,Mode de Fixation des Tarifs Etb Exécutant,EXECUTANT,,->
+MTM_NAT,Modulation du Ticket Modérateur,BENEFICIAIRE,,->
+ORG_CLE_REG,Région de l'Organisme de Liquidation à partir de 2015 (tables A),ORGANISME,"Région de l'organisme qui « liquide », c’est-à-dire qui effectue le remboursement des prestations pour les bénéficiaires qui lui sont affiliés, mais aussi, éventuellement, pour des bénéficiaires affiliés dans d’autres organismes :
+Cas des cures thermales liquidées sur le lieu d’implantation de l’établissement, quelle que soit l’affiliation du bénéficiaire, cas des caisses des DOM (hors Guadeloupe), qui liquident les prestations des salariés agricoles du régime agricole et cas des SLM « infogérées » : SLM qui ont restitué la gestion de la part de base des remboursements, effectuée par un organisme de liquidation spécifique.",->
+ORG_CLE_ZEAT,ZEAT de l'Organisme de Liquidation jusqu'à 2014 (tables P),ORGANISME,,->
+PRE_INS_REG,Région du PS Prescripteur à partir de 2015 (tables A),PRESCRIPTEUR,Informe de la région de prescription de la prestation par un professionnel de santé dans un cabinet qu’il soit principal ou secondaire.,->
+PRE_INS_ZEAT,ZEAT du PS Prescripteur jusqu'à 2014 (tables P),PRESCRIPTEUR,,->
+PRS_ACT_COG,Coefficient Global,INDICATEURS BRUTS,"
+Indicateurs bruts destinés aux utilisateurs avertis des données, qui maitrisent les filtres sur les types de remboursement : 
+- filtre impératif sur type de remboursement = 0 pour  comptabiliser les prestations sans doublon de type de remboursement puisque la totalité du coefficient global se trouve au sein de la modalité 0
+- filtre sur un type de remboursement <> 0 (choisir la valeur de la modalité en fonction du type de remboursement précis).
+
+
+Il représente un volume : quantité x coefficient tarifé de l'acte.",
+PRS_ACT_NBR,Dénombrement,INDICATEURS BRUTS,"
+Indicateurs bruts destinés aux utilisateurs avertis des données, qui maitrisent les filtres sur les types de remboursement : 
+- filtre impératif sur type de remboursement = 0 pour  comptabiliser les prestations sans doublon de type de remboursement puisque la totalité du dénombrement se trouve au sein de la modalité 0
+- filtre sur un type de remboursement <> 0 (choisir la valeur de la modalité en fonction du type de remboursement précis).
+
+Attention, il faut privilégier la quantité au dénombrement. En effet, les données du dénombrement ne sont pas remontées pour l’ensemble des régimes (elles sont remontées pour le régime général et les régimes infogérés).",
+PRS_ACT_QTE,Quantité,INDICATEURS BRUTS,"
+Indicateurs bruts destinés aux utilisateurs avertis des données, qui maitrisent les filtres sur les types de remboursement : 
+- filtre impératif sur type de remboursement = 0 pour  comptabiliser les prestations sans doublon de type de remboursement puisque la totalité de la quantité se trouve au sein de la modalité 0
+- filtre sur un type de remboursement <> 0 (choisir la valeur de la modalité en fonction du type de remboursement précis).
+
+Pour compter des actes, il faut utiliser la variable « quantité d’actes ». Elle sert à tarifer et à calculer le remboursement selon la formule suivante : 
+Montant remboursé = base de remboursement * quantité d’actes * taux de remboursement",
+PRS_DEP_MNT,Montant du Dépassement,INDICATEURS BRUTS,"
+Indicateurs bruts destinés aux utilisateurs avertis des données, qui maitrisent les filtres sur les types de remboursement : 
+- filtre impératif sur type de remboursement = 0 pour  comptabiliser les prestations sans doublon de type de remboursement puisque la totalité du dépassement se trouve au sein de la modalité 0
+- filtre sur un type de remboursement <> 0 (choisir la valeur de la modalité en fonction du type de remboursement précis).
+
+Le montant de dépassement concerne uniquement du dépassement d’honoraires de médecins, il est non alimenté lorsqu’il s’agit de produits et prestations (LPP). Dans ce dernier cas, il faut recalculer l’indicateur de la manière suivante : Dépassement = Montant payé – base de remboursement.",
+PRS_FJH_TYP,Type de Prise en Charge Forfait Journalier,PRESTATION,,->
+PRS_NAT,Nature de Prestation,PRESTATION,Permet de distinguer chaque acte principal de ses majorations.,->
+PRS_PAI_MNT,Montant de la Dépense,INDICATEURS BRUTS,"
+Indicateurs bruts destinés aux utilisateurs avertis des données, qui maitrisent les filtres sur les types de remboursement : 
+- filtre impératif sur type de remboursement = 0 pour  comptabiliser les prestations sans doublon de type de remboursement puisque la totalité de la dépense se trouve au sein de la modalité 0
+- filtre sur un type de remboursement <> 0 (choisir la valeur de la modalité en fonction du type de remboursement précis).
+
+Le montant de la dépense correspond au montant payé par le patient, donc les honoraires du professionnel de santé.",
+PRS_PDS_QCP,Code Qualificatif Parcours de Soins (sortie),PRESTATION,,->
+PRS_PPU_SEC,Code Secteur Privé/Public,PRESTATION,,->
+PRS_REM_BSE,Base de Remboursement,INDICATEURS BRUTS,"Cet indicateur peut s'utiliser sans filtres sur le type de remboursement. Dans ce cas, il s'agit de la base de remboursement des prestations légales d'Assurance Maladie (0,1) et des parts supplémentaires (>=2). Il peut également être filtré sur le type de remboursement (PRS_REM_TYP) selon la base de remboursement que vous souhaitez cibler.
+
+La base de remboursement correspond au montant de la base remboursée par l'Assurance Maladie au bénéficiaire.",
+PRS_REM_MNT,Montant Versé/Remboursé,INDICATEURS BRUTS,"Cet indicateur peut s'utiliser sans filtres sur le type de remboursement. Dans ce cas, il s'agit du montant remboursé des prestations légales d'Assurance Maladie (0,1) et des parts supplémentaires (>=2). Il peut également être filtré sur le type de remboursement (PRS_REM_TYP) selon le montant remboursé que vous souhaitez cibler.
+
+Le montant remboursé correspond au montant payé par l'Assurance Maladie au bénéficiaire, en fonction de la base de remboursement et du taux de remboursement.",
+PRS_REM_TAU,Taux de Remboursement,PRESTATION,Le « Taux de remboursement » contient le taux qui est utilisé pour calculer le montant remboursé.,
+PRS_REM_TYP,Type de Remboursement,PRESTATION,"Pour prendre en compte les parts légales, il faut utiliser PRS_REM_TYP = 0 ou 1, les autres valeurs concernent les parts supplémentaires (voir modalités ci-contre).",->
+PSE_ACT_CAT,Catégorie de l' Exécutant,EXECUTANT,,->
+PSE_ACT_SNDS,Nature d'Activité PS Exécutant,EXECUTANT,"Renseignée pour les professions de santé non médicales (attention aux dentistes présents en nature d'activité 19, 53, 54 et spécialité médicale 36)",->
+PSE_SPE_SNDS,Spécialité Médicale PS Exécutant,EXECUTANT,"Renseigné pour les professions médicales (attention aux dentistes présents en nature d'activité 19, 53, 54 et spécialité médicale 36)",->
+PSE_STJ_SNDS,Statut Juridique PS Exécutant,EXECUTANT,"L’objet « Statut juridique du PS Exécutant » est renseigné uniquement pour les données liquidées par les régimes RG et infogérées, il vaut ’90’ (= valeur inconnue) pour les autres.",->
+PSP_ACT_CAT,Catégorie du Prescripteur,PRESCRIPTEUR,,->
+PSP_ACT_SNDS,Nature d'Activité PS Prescripteur,PRESCRIPTEUR,"Renseignée pour les professions de santé non médicales (attention aux dentistes présents en nature d'activité 19, 53, 54 et spécialité médicale 36)",->
+PSP_SPE_SNDS,Spécialité Médicale PS Exécutant,PRESCRIPTEUR,"Renseigné pour les professions médicales (attention aux dentistes présents en nature d'activité 19, 53, 54 et spécialité médicale 36)",->
+PSP_STJ_SNDS,Statut Juridique PS Prescripteur,PRESCRIPTEUR,"L’objet « Statut juridique du PS Perscripteur » est renseigné uniquement pour les données liquidées par les régimes RG et infogérées, il vaut ’90’ (= valeur inconnue) pour les autres.",->
+SOI_ANN,Année de Soins,PERIODE,,
+SOI_MOI,Mois de Soins,PERIODE,,
+TOP_PS5_TRG,Top Périmètre hors CMU C et prestations pour information,TOP PS5,Ce top permet de se re-situer sur le périmètre de la Statistique Mensuelle en tous régimes => TOP_PS5_TRG = 1,->
