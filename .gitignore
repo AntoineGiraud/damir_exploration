@@ -13,3 +13,5 @@ uv.lock
 *.db
 docs/memoire_2018_MEKONTSO.pdf
 docs/memoire_2022_BOYER.pdf
+*.log
+*.parquet

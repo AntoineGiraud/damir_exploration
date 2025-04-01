@@ -1,0 +1,43 @@
+import duckdb
+import os
+from timer import Timer
+from loguru import logger
+
+logger.add("log_file.log", format="{time:HH:mm:ss} {level} {message}")
+
+
+def list_files(folder: str, pattern: str = ".csv.gz") -> dict[str]:
+    liste_fichiers = []
+
+    for racine, dirs, fichiers in os.walk(folder):
+        racine = racine.replace("\\", "/") + "/"
+        liste_fichiers.extend([racine + f for f in fichiers if pattern in f])
+
+    return liste_fichiers
+
+
+@Timer(label="    -> .parquet")
+def convert_csv_to_parquet(csv_path: str):
+    # folder, csv_file = os.path.split(csv_path)
+    parquet_path = csv_path.replace(".csv.gz", ".parquet")
+
+    # duckdb.sql(f"copy (FROM read_csv('{csv_path}')) to '{parquet_path}'")
+
+
+# liste_fichiers = [f for f in os.listdir("input/damir") if ".csv.gz" in f]
+liste_fichiers = list_files("input/damir", ".csv.gz")
+
+
+logger.info(f"{len(liste_fichiers)} fichiers `.csv.gz` à convertir en `.parquet`")
+
+for f in liste_fichiers:
+    logger.info(f"  {f} to .parquet")
+
+    if os.path.isfile(f.replace(".csv.gz", ".parquet")):
+        logger.info("    .parquet already there")
+        continue
+
+    convert_csv_to_parquet(f)
+
+
+logger.info("fin 🎉")
