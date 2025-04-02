@@ -2,8 +2,9 @@ import time
 
 
 class Timer:
-    def __init__(self, label="Execution time"):
+    def __init__(self, label="Execution time", logger=None):
         self.label = label
+        self.logger = logger
 
     def __call__(self, func):
         def wrapped_func(*args, **kwargs):
@@ -16,7 +17,12 @@ class Timer:
             minutes, seconds = divmod(duration, 60)
             str_temps = f"{seconds:.1f}s" if minutes == 0 else f"{int(minutes)} min {int(seconds)}s"
             name = f" - {kwargs['name']}" if "name" in kwargs else ""
-            print(f"{self.label} ({str_temps}){name}")
+
+            if self.logger:
+                self.logger.info(f"{self.label} ({str_temps}){name}")
+            else:
+                print(f"{self.label} ({str_temps}){name}")
+
             return result
 
         return wrapped_func
