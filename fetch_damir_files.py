@@ -5,7 +5,7 @@ import os
 from timer import Timer
 from loguru import logger
 
-logger.add("logs/fetchDamirFiles_{time:YYYY-MM-DD}.log", format="{time:YYYY-MM-DD HH:mm:ss} {level} {message}")
+logger.add("logs/fetchDamirFiles_{time:YYYY-MM-DD}.log", format="{time:HH:mm:ss} {level} {message}")
 
 
 base_url = "https://open-data-assurance-maladie.ameli.fr/depenses/"
@@ -38,7 +38,7 @@ def download_file(url: str, output_path: str):
 
 
 for annee in reversed(range(2009, 2025)):
-    input_dir = f"input/damir/{annee}/"
+    input_dir = f"input/damir_csvgz/{annee}/"
     os.makedirs(input_dir, exist_ok=True)
 
     logger.info(f"fetch {annee}")

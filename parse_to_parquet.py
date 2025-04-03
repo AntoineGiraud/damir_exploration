@@ -3,7 +3,7 @@ import os
 from timer import Timer
 from loguru import logger
 
-logger.add("logs/damir_csv_to_parquet_{time:YYYY-MM-DD}.log", format="{time:YYYY-MM-DD HH:mm:ss} {level} {message}")
+logger.add("logs/damir_csv_to_parquet_{time:YYYY-MM-DD}.log", format="{time:HH:mm:ss} {level} {message}")
 
 
 def list_files(folder: str, pattern: str = ".csv.gz") -> dict[str]:
@@ -19,13 +19,13 @@ def list_files(folder: str, pattern: str = ".csv.gz") -> dict[str]:
 @Timer(label="    -> .parquet", logger=logger)
 def convert_csv_to_parquet(csv_path: str):
     # folder, csv_file = os.path.split(csv_path)
-    parquet_path = csv_path.replace(".csv.gz", ".parquet")
+    parquet_path = csv_path.replace(".csv.gz", ".parquet").replace("damir_csvgz", "damir_parquet")
 
     duckdb.sql(f"copy (FROM read_csv('{csv_path}')) to '{parquet_path}'")
 
 
 # liste_fichiers = [f for f in os.listdir("input/damir") if ".csv.gz" in f]
-liste_fichiers = list_files("input/damir", ".csv.gz")
+liste_fichiers = list_files("input/damir_csvgz", ".csv.gz")
 
 
 logger.info(f"{len(liste_fichiers)} fichiers `.csv.gz` à convertir en `.parquet`")

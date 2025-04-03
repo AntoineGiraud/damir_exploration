@@ -12,7 +12,7 @@ def get_folder_files(dossier: str, pattern: str = ".csv.gz") -> dict[str]:
 
 
 # Remplacez 'votre_dossier' par le chemin du dossier que vous souhaitez explorer
-liste_fichiers = get_folder_files("input/damir", ".csv.gz")
+liste_fichiers = get_folder_files("input/damir_csvgz", ".csv.gz")
 
 print()
 print(f"{len(liste_fichiers)=}")
