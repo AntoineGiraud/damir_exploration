@@ -39,5 +39,4 @@ for f in liste_fichiers:
 
     convert_csv_to_parquet(f)
 
-
 logger.info("fin 🎉")

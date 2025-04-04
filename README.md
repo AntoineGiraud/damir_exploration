@@ -20,7 +20,8 @@ des **mémoires de recherche**
 - de [2018 - Lyon](https://journeesiard2019.institutdesactuaires.com/docs/mem/7b49073812c2d4775d615975e6823098.pdf) - M. MEKONTSO FOTSING
 - de [2022 - Paris Daufine](https://www.institutdesactuaires.com/docs/mem/6c8b6c92b28edf63fd916809f8e459e1.pdf) - Mme. BOYER
 
-> ![memoire_2022_rafinementDonnees](./docs/memoire_2022_rafinementDonnees.png) *- mémoire S. BOYER*
+> ![memoire_2022_rafinementDonnees](./docs/memoire_2022_rafinementDonnees.png)<br> *- mémoire S. BOYER*
+> [memoire_2022_axesAnalyse](./docs/memoire_2022_axesAnalyse.png)<br> *- mémoire S. BOYER*
 
 ## Notes sur DuckDB 🦆🚀
 
