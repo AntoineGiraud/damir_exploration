@@ -84,16 +84,28 @@ limit 100
 
 -- analyse SOIN année / mois
 select
+    prs_rem_typ,
+    PSE_ACT_SNDS,
     --FLX_ANN_MOI, -- dt traitement // fichier
     SOI_ANN::int as soin_annee, -- année du soin
     SOI_MOI::int as soin_mois, -- mois du soin
     -- if(soin_annee< 1900, null, make_date(soin_annee, soin_mois, 1)) soin_date,
-    round(sum(FLT_REM_MNT), 0) FLT_REM_MNT,
-    sum(FLT_ACT_QTE) FLT_ACT_QTE,
-    round(sum(FLT_PAI_MNT), 0) FLT_PAI_MNT,
+    sum(PRS_ACT_QTE) PRS_ACT_QTE, -- nb d'actes effectués
+    -- sum(PRS_ACT_NBR) PRS_ACT_NBR, -- dénombrement
+    sum(PRS_ACT_COG)::int PRS_ACT_COG, -- PRS_ACT_QTE * coef de l'acte
+    round(sum(PRS_ACT_COG) / sum(PRS_ACT_QTE), 1) coef_moyen,
+    round(sum(PRS_PAI_MNT), 0) PRS_PAI_MNT,
+    round(sum(PRS_REM_BSE), 0) PRS_REM_BSE,
+    round(sum(PRS_REM_MNT), 0) PRS_REM_MNT,
+    round(sum(PRS_DEP_MNT), 0) PRS_DEP_MNT,
+    count(1) nb_lignes_damir,
 from '~/Documents\code\damir_actes_secu\input\damir_parquet\2024/A2024*.parquet'
+where soin_annee = 2024
+  and pse_act_snds = 28 --> les orthophonistes (Libellé Nature d'Activité PS Exécutant)
+  and prs_rem_typ in (0, 1) --> type rembourserement "prestation de référence"
+  and CPT_ENV_TYP = 1 --> les libéraux "soins de ville"
 group by all
-order by 1 desc , 2 desc
+order by 1, 2, 3, 4
 
 
 select *

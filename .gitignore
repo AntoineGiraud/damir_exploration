@@ -17,3 +17,5 @@ uv.lock
 input/**/*.parquet
 input/**/*.csv
 docs/memoire*.pdf
+*.wal
+~$*.xlsx

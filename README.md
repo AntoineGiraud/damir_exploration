@@ -40,17 +40,14 @@ des **mémoires de recherche**
 
 > D’autres variables quantitatives viennent s’ajouter à ces six axes. Ce sont les indicateurs de montant et de volume des remboursements des prestations en santé
 > * [REM_BSE] la **base de remboursement** : il s’agit d’un montant défini par la Sécurité Sociale
+> * [REM_MNT] Le montant du **remboursement obligatoire** : il correspond au montant remboursé par la Sécurité Sociale (c.f. figure 1.15) `Montant remboursé = base de remboursement * quantité d’actes * taux de remboursement`
 > * [PAI_MNT] le montant de **la dépense** : ils correspondent aux frais réels, ce que coûte la prestation santé
-> * [DEP_MNT] le montant du **dépassement** : après prise en charge d’une partie des frais réels par la Sécurité
-Sociale, le dépassement correspond à la différence des frais réels et du montant remboursé partiellement ou intégralement. La base Open Damir contient uniquement les informations sur les
-remboursement de la Sécurité Sociale. Aucune information sur les remboursements des organismes complémentaires n’est indiqué.
-> * [REM_MNT] Le montant du **remboursement obligatoire** : il correspond au montant remboursé par la Sécurité
-Sociale (c.f. figure 1.15)
+> * [DEP_MNT] le montant du **dépassement** : après prise en charge d’une partie des frais réels par la Sécurité Sociale, le dépassement correspond à la différence des frais réels et du montant remboursé partiellement ou intégralement. La base Open Damir contient uniquement les informations sur les remboursement de la Sécurité Sociale. Aucune information sur les remboursements des organismes complémentaires n’est indiqué.
 
 > Concernant les indicateurs de volumes de la base Open Damir, il existe :
-> * [ACT_QTE] la quantité d’actes,
-> * [ACT_NBR] le dénombrement d’actes,
-> * [ACT_COG] le coefficient global.
+> * [ACT_QTE] la quantité d’actes
+> * [ACT_NBR] le dénombrement d’actes - *privilégier la quantité au dénombrement parfois incomplet*
+> * [ACT_COG] le coefficient global : `quantité x coefficient tarifé de l'acte`
 
 ## 1ères explorations avec DuckDB 🦆🚀
 
