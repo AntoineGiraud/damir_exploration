@@ -18,7 +18,7 @@ def list_files(folder: str, pattern: str = ".csv.gz") -> dict[str]:
 
 @Timer(label="    -> .parquet", logger=logger)
 def convert_csv_to_parquet(csv_path: str):
-    # folder, csv_file = os.path.split(csv_path)
+    os.makedirs(os.path.split(csv_path)[0].replace("csvgz", "parquet"), exist_ok=True)
     parquet_path = csv_path.replace(".csv.gz", ".parquet").replace("damir_csvgz", "damir_parquet")
 
     duckdb.sql(f"copy (FROM read_csv('{csv_path}')) to '{parquet_path}'")

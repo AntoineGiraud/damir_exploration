@@ -16,3 +16,4 @@ liste_fichiers = get_folder_files("input/damir_csvgz", ".csv.gz")
 
 print()
 print(f"{len(liste_fichiers)=}")
+print(f"{liste_fichiers=}")
