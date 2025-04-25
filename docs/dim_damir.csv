@@ -1,0 +1,62 @@
+categorie,dimension,description,nb_cle
+BENEFICIAIRE,AGE_BEN_SNDS,Tranche d'Age Bénéficiaire au moment des soins,9
+BENEFICIAIRE,BEN_CMU_TOP,Top Bénéficiaire CMU-C ,4
+BENEFICIAIRE,BEN_QLT_COD,Qualité du Bénéficiaire,6
+BENEFICIAIRE,BEN_RES_REG,Région de Résidence du Bénéficiaire à partir de 2015 (tables A),14
+BENEFICIAIRE,BEN_RES_ZEAT,ZEAT de Résidence du Bénéficiaire  jusqu'à 2014 (tables P),10
+BENEFICIAIRE,BEN_SEX_COD,Sexe du Bénéficiaire,4
+BENEFICIAIRE,MTM_NAT,Modulation du Ticket Modérateur,7
+EXECUTANT,DDP_SPE_COD,Discipline de Prestation Etb Exécutant,36
+EXECUTANT,ETE_CAT_SNDS,Catégorie Etb Exécutant,57
+EXECUTANT,ETE_REG_COD,Région d'Implantation Etb Exécutant à partir de 2015 (tables A),14
+EXECUTANT,ETE_TYP_SNDS,Type Etb Exécutant,7
+EXECUTANT,ETE_ZEAT_COD,ZEAT d'Implantation Etb Exécutant  jusqu'à 2014 (tables P),10
+EXECUTANT,EXE_INS_REG,Région du PS Exécutant à partir de 2015 (tables A),14
+EXECUTANT,EXE_INS_ZEAT,ZEAT du PS Exécutant  jusqu'à 2014 (tables P),10
+EXECUTANT,MDT_TYP_COD,Mode de Traitement Etb Exécutant,4
+EXECUTANT,MFT_COD,Mode de Fixation des Tarifs Etb Exécutant,37
+EXECUTANT,PSE_ACT_CAT,Catégorie de l' Exécutant,11
+EXECUTANT,PSE_ACT_SNDS,Nature d'Activité PS Exécutant,15
+EXECUTANT,PSE_SPE_SNDS,Spécialité Médicale PS Exécutant,27
+EXECUTANT,PSE_STJ_SNDS,Statut Juridique PS Exécutant,4
+INDICATEURS BRUTS,PRS_ACT_COG,Coefficient Global,
+INDICATEURS BRUTS,PRS_ACT_NBR,Dénombrement,
+INDICATEURS BRUTS,PRS_ACT_QTE,Quantité,
+INDICATEURS BRUTS,PRS_DEP_MNT,Montant du Dépassement,
+INDICATEURS BRUTS,PRS_PAI_MNT,Montant de la Dépense ,
+INDICATEURS BRUTS,PRS_REM_BSE,Base de Remboursement,
+INDICATEURS BRUTS,PRS_REM_MNT,Montant Versé/Remboursé,
+INDICATEURS PREFILTRES,FLT_ACT_COG,Coefficient Global de la Prestation Préfiltré,
+INDICATEURS PREFILTRES,FLT_ACT_NBR,Dénombrement de la Prestation Préfiltré,
+INDICATEURS PREFILTRES,FLT_ACT_QTE,Quantité de la Prestation Préfiltrée,
+INDICATEURS PREFILTRES,FLT_DEP_MNT,Montant du Dépassement de la Prestation Préfiltré,
+INDICATEURS PREFILTRES,FLT_PAI_MNT,Montant de la Dépense de la Prestation Préfiltrée,
+INDICATEURS PREFILTRES,FLT_REM_MNT,Montant Versé/Remboursé Préfiltré,
+ORGANISME,ORG_CLE_REG,Région de l'Organisme de Liquidation à partir de 2015 (tables A),14
+ORGANISME,ORG_CLE_ZEAT,ZEAT de l'Organisme de Liquidation jusqu'à 2014 (tables P),10
+PERIODE,SOI_ANN,Année de Soins,
+PERIODE,SOI_MOI,Mois de Soins,
+PERIODE DE TRAITEMENT,FLX_ANN_MOI,Année et Mois de Traitement,
+PRESCRIPTEUR,ETP_CAT_SNDS,Catégorie Etb Prescripteur,57
+PRESCRIPTEUR,ETP_REG_COD,Région d'Implantation Etb Prescripteur à partir de 2015 (tables A),14
+PRESCRIPTEUR,ETP_ZEAT_COD,ZEAT d'Implantation Etb Prescripteur  jusqu'à 2014 (tables P),10
+PRESCRIPTEUR,PRE_INS_REG,Région du PS Prescripteur à partir de 2015 (tables A),14
+PRESCRIPTEUR,PRE_INS_ZEAT,ZEAT du PS Prescripteur jusqu'à 2014 (tables P),10
+PRESCRIPTEUR,PSP_ACT_CAT,Catégorie du Prescripteur,11
+PRESCRIPTEUR,PSP_ACT_SNDS,Nature d'Activité PS Prescripteur,14
+PRESCRIPTEUR,PSP_SPE_SNDS,Spécialité Médicale PS Exécutant,27
+PRESCRIPTEUR,PSP_STJ_SNDS,Statut Juridique PS Prescripteur,4
+PRESTATION,ASU_NAT,Nature d'Assurance,12
+PRESTATION,ATT_NAT,Nature de l'Accident du Travail,5
+PRESTATION,CPL_COD,Complément d'Acte,5
+PRESTATION,CPT_ENV_TYP,Type d'Enveloppe,11
+PRESTATION,DRG_AFF_NAT,Nature du Destinataire de Règlement affiné,26
+PRESTATION,ETE_IND_TAA,Indicateur TAA Privé/Public,5
+PRESTATION,EXO_MTF,Motif d'Exonération du Ticket Modérateur,24
+PRESTATION,PRS_FJH_TYP,Type de Prise en Charge Forfait Journalier,6
+PRESTATION,PRS_NAT,Nature de Prestation,1570
+PRESTATION,PRS_PDS_QCP,Code Qualificatif Parcours de Soins (sortie),26
+PRESTATION,PRS_PPU_SEC,Code Secteur Privé/Public,3
+PRESTATION,PRS_REM_TAU,Taux de Remboursement,
+PRESTATION,PRS_REM_TYP,Type de Remboursement,13
+TOP PS5,TOP_PS5_TRG,Top Périmètre hors CMU C et prestations pour information,3

@@ -46,6 +46,9 @@ select *
 from dim_damir_cle_libelle
 where dimension='PSE_ACT_SNDS'
 
+-- export
+copy dim_damir_cle_libelle to '~\Documents\codes\damir_exploration\docs\dim_damir_cle_libelle.csv';
+
 ------------------------------------------------------------------------
 -- Les colonnes & stats
 ------------------------------------------------------------------------
@@ -80,4 +83,7 @@ order by 1,2
 
 
 -- à quoi ça ressemble ?
-from dim_damir
+from dim_damir;
+
+-- export
+copy (select * exclude(valeurs) from dim_damir) to '~\Documents\codes\damir_exploration\docs\dim_damir.csv';
