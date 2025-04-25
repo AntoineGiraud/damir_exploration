@@ -1,3 +1,9 @@
+select version();
+
+-- ctrl + enter dans dbeaver --> execute les lignes qui se touchent jq'au prochain ;
+set VARIABLE path_input = '~\Documents\codes\damir_exploration\dim_damir_colonnes/';
+-- '~/' == 'C:\Users\AntoineGiraud/'
+SELECT getvariable('path_input');
 
 ------------------------------------------------------------------------
 -- Le détail des clés possibles par dimension DAMIR
@@ -8,12 +14,12 @@
 create or replace table dim_damir_cle_libelle as
 with brut as (
     select
-        A as cle,
-        B as libelle,
-        C as detail,
+        trim(A) as cle,
+        trim(B) as libelle,
+        trim(C) as detail,
         if( lag(cle) over() is null, 1, 0 ) as rg_mesure,
         row_number() over() rg,
-    from read_xlsx('~\Documents\codes\damir_exploration\docs\2024_descriptif-variables_open-damir-base-complete.xlsx',
+    from read_xlsx(getvariable('path_input') || '2024_descriptif-variables_open-damir-base-complete.xlsx',
                     sheet = 'MOD OPEN DAMIR', range = 'A3:C2400', all_varchar = true, header = false)
     where not ifnull(cle, '') in ('valeur', 'MODALITES VARIABLES OPEN DAMIR')
 ), brut_1 as (
@@ -40,6 +46,7 @@ order by dimension, cle;
 
 -- à quoi ça ressemble ?
 from dim_damir_cle_libelle;
+summarize dim_damir_cle_libelle;
 
 -- recap d'une dim
 select *
@@ -47,7 +54,7 @@ from dim_damir_cle_libelle
 where dimension='PSE_ACT_SNDS'
 
 -- export
-copy dim_damir_cle_libelle to '~\Documents\codes\damir_exploration\docs\dim_damir_cle_libelle.csv';
+copy dim_damir_cle_libelle to '~\Documents\codes\damir_exploration\dim_damir_colonnes\dim_damir_cle_libelle.csv';
 
 ------------------------------------------------------------------------
 -- Les colonnes & stats
@@ -69,7 +76,7 @@ with cle_agg as (
 	    A as dimension,
 	    B as description,
 	    -- D as note,
-	from read_xlsx('~\Documents\codes\damir_exploration\docs\2024_descriptif-variables_open-damir-base-complete.xlsx',
+	from read_xlsx('~\Documents\codes\damir_exploration\dim_damir_colonnes\2024_descriptif-variables_open-damir-base-complete.xlsx',
 	                sheet = 'OPEN DAMIR', range = 'A3:D100', all_varchar = true, header = false)
 	where dimension is not null
 )
@@ -86,4 +93,4 @@ order by 1,2
 from dim_damir;
 
 -- export
-copy (select * exclude(valeurs) from dim_damir) to '~\Documents\codes\damir_exploration\docs\dim_damir.csv';
+copy (select * exclude(valeurs) from dim_damir) to '~\Documents\codes\damir_exploration\dim_damir_colonnes\dim_damir.csv';

@@ -1,0 +1,27 @@
+DRG_AFF_NAT,libelle
+0,SANS OBJET
+11,Assuré
+12,Adresse Provisoire
+13,Conjoint divorcé
+14,Conjoint séparé
+15,Procuration
+16,Tutelle
+17,Veuvage
+18,conjoint
+19,Enfant
+21,Autre ayant droit
+22,concubin
+23,"Ascendant, descendant"
+24,Concubin en rupture
+25,Bénéficaire Pacsé
+26,Pacs fin
+27,A-D- RESIDENCE UE
+31,Correspondant d'entreprise
+32,Mutuelle
+33,Subrogation
+34,Titre Médecin
+35,Tiers Payant
+36,Tiers Payant Intégral (RO+OC)
+37,Subrogation multiple
+38,TP RO + OC C2S
+99,VALEUR INCONNUE

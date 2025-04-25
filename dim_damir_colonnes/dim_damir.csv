@@ -1,6 +1,6 @@
 categorie,dimension,description,nb_cle
 BENEFICIAIRE,AGE_BEN_SNDS,Tranche d'Age Bénéficiaire au moment des soins,9
-BENEFICIAIRE,BEN_CMU_TOP,Top Bénéficiaire CMU-C ,4
+BENEFICIAIRE,BEN_CMU_TOP,Top Bénéficiaire CMU-C,4
 BENEFICIAIRE,BEN_QLT_COD,Qualité du Bénéficiaire,6
 BENEFICIAIRE,BEN_RES_REG,Région de Résidence du Bénéficiaire à partir de 2015 (tables A),14
 BENEFICIAIRE,BEN_RES_ZEAT,ZEAT de Résidence du Bénéficiaire  jusqu'à 2014 (tables P),10
@@ -23,7 +23,7 @@ INDICATEURS BRUTS,PRS_ACT_COG,Coefficient Global,
 INDICATEURS BRUTS,PRS_ACT_NBR,Dénombrement,
 INDICATEURS BRUTS,PRS_ACT_QTE,Quantité,
 INDICATEURS BRUTS,PRS_DEP_MNT,Montant du Dépassement,
-INDICATEURS BRUTS,PRS_PAI_MNT,Montant de la Dépense ,
+INDICATEURS BRUTS,PRS_PAI_MNT,Montant de la Dépense,
 INDICATEURS BRUTS,PRS_REM_BSE,Base de Remboursement,
 INDICATEURS BRUTS,PRS_REM_MNT,Montant Versé/Remboursé,
 INDICATEURS PREFILTRES,FLT_ACT_COG,Coefficient Global de la Prestation Préfiltré,
