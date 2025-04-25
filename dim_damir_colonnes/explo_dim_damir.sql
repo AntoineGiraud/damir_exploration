@@ -72,16 +72,17 @@ with cle_agg as (
 ), colonnes as (
 	-- descriptions colonnes
 	SELECT 
-	    C as categorie,
-	    A as dimension,
-	    B as description,
+	    lower(trim(C)) as categorie,
+	    trim(A) as dimension,
+	    trim(B) as description,
 	    -- D as note,
-	from read_xlsx('~\Documents\codes\damir_exploration\dim_damir_colonnes\2024_descriptif-variables_open-damir-base-complete.xlsx',
+	from read_xlsx(getvariable('path_input') || '\2024_descriptif-variables_open-damir-base-complete.xlsx',
 	                sheet = 'OPEN DAMIR', range = 'A3:D100', all_varchar = true, header = false)
 	where dimension is not null
 )
 select
-	colonnes.*,
+	upper(categorie[1]) || categorie[2:] as categorie,
+	colonnes.* exclude(categorie),
 	cle_agg.nb_cle,
 	cle_agg.valeurs,
 from colonnes
