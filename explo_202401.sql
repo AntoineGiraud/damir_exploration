@@ -111,3 +111,18 @@ order by 1, 2, 3, 4
 select *
 from '~/Documents\code\damir_actes_secu\input\damir_parquet\2024/A2024*.parquet'
 --where PSE_ACT_CAT = 9
+
+
+
+-- stats par mois
+select
+    SOI_ANN || SOI_MOI date_soin,
+    count (1) nb_row_damir,
+    sum (FLT_ACT_QTE) as FLT_ACT_QTE, -- nb actes
+    sum (FLT_REM_MNT::int) as FLT_REM_MNT, -- remboursements sécu
+    sum (if (BEN_SEX_COD=1, FLT_ACT_QTE, 0)) as FLT_ACT_QTE_homme, sum(if (BEN_SEX_COD=2, FLT_ACT_QTE, 0)) as FLT_ACT_QTE_femme,
+from read_parquet (getvariable('data_path') ||'**/A202*.parquet')
+where SOI_ANN = 2024
+    -- and pse_act_snds = 28 --> les orthophonistes (Libellé Nature d'Activité PS Exécutant)
+    and prs_rem_typ = --> type rembourserement "prestation de référence"
+group by 1

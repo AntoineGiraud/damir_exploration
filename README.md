@@ -72,3 +72,10 @@ summarize from 'data/A202401.parquet';
 ```
 
 ![summarize_202401](docs/summarize_202401.png)
+
+## Explo rapido
+
+en 1 min 16s : aggrégation par mois des soins de 2024 pour afficher le nb d'actes & le montant des remboursements de la sécurité sociale
+
+![explore_damir_2024](./docs\explore_damir_2024.png)
+
