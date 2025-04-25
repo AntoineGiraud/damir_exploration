@@ -9,7 +9,7 @@ with brut as (
         C as detail,
         if( lag(cle) over() is null, 1, 0 ) as rg_mesure,
         row_number() over() rg,
-    from read_xlsx('~\Documents\code\damir_actes_secu\docs/2024_descriptif-variables_open-damir-base-complete.xlsx',
+    from read_xlsx('~\Documents\codes\damir_exploration\docs\2024_descriptif-variables_open-damir-base-complete.xlsx',
                     sheet = 'MOD OPEN DAMIR', range = 'A2:C2400', all_varchar = true)
     where not ifnull(cle, '') in ('valeur', 'MODALITES VARIABLES OPEN DAMIR')
 ), brut_1 as (
@@ -46,3 +46,9 @@ select
 from cle_libelle
 group by all
 order by 1
+
+
+-- recap unnested
+select dimension, unnest(valeurs) vals, dimension_description, nb_cle, rg_mesure,
+from dim_damir
+where dimension='PSE_ACT_SNDS'
