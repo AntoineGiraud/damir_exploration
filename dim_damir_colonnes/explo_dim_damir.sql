@@ -48,13 +48,33 @@ order by dimension, cle;
 from dim_damir_cle_libelle;
 summarize dim_damir_cle_libelle;
 
+-- valeurs inconnues ?
+from dim_damir_cle_libelle
+where lower(libelle) like '%inconnu%'
+	or lower(libelle) like 'non renseigne'
+	or lower(libelle) like '%sans objet%'
+	--or cle=0;
+
 -- recap d'une dim
 select *
 from dim_damir_cle_libelle
-where dimension='PSE_ACT_SNDS'
+where dimension='ETP_CAT_SNDS'
+
+-- avons nous des doublons ...
+select
+	*,
+	count(1) over(partition by dimension, cle) nb_doublons
+from dim_damir_cle_libelle
+qualify nb_doublons>1
+order by 1,2
+
 
 -- export
-copy dim_damir_cle_libelle to '~\Documents\codes\damir_exploration\dim_damir_colonnes\dim_damir_cle_libelle.csv';
+copy (
+  from dim_damir_cle_libelle
+  qualify 1=row_number() over (partition by dimension, cle order by libelle)
+  order by 1, 2
+) to '~\Documents\codes\damir_exploration\dim_damir_colonnes\dim_damir_cle_libelle.csv';
 
 ------------------------------------------------------------------------
 -- Les colonnes & stats
