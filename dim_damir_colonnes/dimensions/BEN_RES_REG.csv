@@ -1,15 +1,15 @@
-BEN_RES_REG,libelle
-5,Régions et Départements d'outre-mer
-11,Ile-de-France
-24,Centre-Val de Loire
-27,Bourgogne-Franche-Comté
-28,Normandie
-32,Hauts-de-France - Nord-Pas-de-Calais-Picardie
-44,Grand Est
-52,Pays de la Loire
-53,Bretagne
-75,Aquitaine-Limousin-Poitou-Charentes
-76,Languedoc-Roussillon-Midi-Pyrénées
-84,Auvergne-Rhône-Alpes
-93,Provence-Alpes-Côte d'Azur et Corse
-99,Inconnu
+BEN_RES_REG,libelle,nb_val_jan24
+5,Régions et Départements d'outre-mer,1323081
+11,Ile-de-France,4723674
+24,Centre-Val de Loire,1998859
+27,Bourgogne-Franche-Comté,1970244
+28,Normandie,2153547
+32,Hauts-de-France - Nord-Pas-de-Calais-Picardie,3033282
+44,Grand Est,3435837
+52,Pays de la Loire,2207301
+53,Bretagne,1982981
+75,Aquitaine-Limousin-Poitou-Charentes,3139219
+76,Languedoc-Roussillon-Midi-Pyrénées,3533170
+84,Auvergne-Rhône-Alpes,3437438
+93,Provence-Alpes-Côte d'Azur et Corse,3392422
+99,Inconnu,2427121

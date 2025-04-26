@@ -34,9 +34,6 @@ des **mémoires de recherche**
 
 > Au total, chaque ligne de prestation est décrite par 55 variables. - **doc Open Damir**
 
-💡 [Excel](https://www.assurance-maladie.ameli.fr/content/descriptif-des-variables-de-la-serie-open-damir-base-complete) descriptif des variables Open Damir
-<br> 👉 Copié & exporté dans le dossier [dim_damir_colonnes](./dim_damir_colonnes/)
-
 ### Axes d'analyse
 
 * **Période de traitement** & rembourserment (année / mois)
@@ -74,6 +71,21 @@ cf. [Figure 2.2 - Mémoire BOYER](./docs/memoire_2022_indicateurs.png)
 
 * `PRS_` : non préfiltré 🎯 étudier les régimes spéciaux
 * `FLT_` : préfiltré (sauf `REM_BSE`) 🎯 étudier le régime obligatoire
+
+### Exploration sur l'utilité des dimensions/colonnes/axes
+
+Vous retrouverez dans le dossier [dim_damir_colonnes](./dim_damir_colonnes/)
+
+* L'[Excel](https://www.assurance-maladie.ameli.fr/content/descriptif-des-variables-de-la-serie-open-damir-base-complete) descriptif des variables Open Damir
+* 1 script `.sql` pour extraire les infos de l'Excel en .csv
+* 1 script `.python` pour
+  * calculer l'usage respectifs des clés dans `A202401.parquet`
+  * extraire 1 .csv par dimension<br>*💡 Pratique pour avoir de belles dim dans Power BI ...*
+* 1 📊 rapport `.pbix` pour explorer les colonnes
+  * Combien de valeurs "inconnues" / "sans objet"
+  * les colonnes de la catégorie Bénéficiaire & leurs valeurs
+
+![explo_colonnes_damir.pbix](./dim_damir_colonnes/explo_colonnes_damir.pbix.png)
 
 ## 1ères explorations avec DuckDB 🦆🚀
 

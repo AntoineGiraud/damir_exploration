@@ -1,5 +1,5 @@
-BEN_CMU_TOP,libelle,detail
-0,Non bénéficiaire de la C2S,Non bénéficiaire de la CMU C
-1,Bénéficiaire de la C2S,Bénéficiaire de la CMU C
-2,Sans Objet,Sans Objet
-9,VALEUR INCONNUE,VALEUR INCONNUE
+BEN_CMU_TOP,libelle,nb_val_jan24,detail
+0,Non bénéficiaire de la C2S,18486160,Non bénéficiaire de la CMU C
+1,Bénéficiaire de la C2S,4401033,Bénéficiaire de la CMU C
+2,Sans Objet,44362,Sans Objet
+9,VALEUR INCONNUE,15826621,VALEUR INCONNUE

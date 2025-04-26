@@ -1,4 +1,4 @@
-TOP_PS5_TRG,libelle
-0,Type de Remboursement C2S/CMU C ou Prestations pour Information
-1,Hors Type de Remboursement C2S/CMU C et hors Prestations pour Information
-9,VALEUR INCONNUE
+TOP_PS5_TRG,libelle,nb_val_jan24
+0,Type de Remboursement C2S/CMU C ou Prestations pour Information,5929621
+1,Hors Type de Remboursement C2S/CMU C et hors Prestations pour Information,17572888
+9,VALEUR INCONNUE,677078

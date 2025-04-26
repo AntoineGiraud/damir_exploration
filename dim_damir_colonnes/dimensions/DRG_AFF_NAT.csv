@@ -1,27 +1,27 @@
-DRG_AFF_NAT,libelle
-0,SANS OBJET
-11,Assuré
-12,Adresse Provisoire
-13,Conjoint divorcé
-14,Conjoint séparé
-15,Procuration
-16,Tutelle
-17,Veuvage
-18,conjoint
-19,Enfant
-21,Autre ayant droit
-22,concubin
-23,"Ascendant, descendant"
-24,Concubin en rupture
-25,Bénéficaire Pacsé
-26,Pacs fin
-27,A-D- RESIDENCE UE
-31,Correspondant d'entreprise
-32,Mutuelle
-33,Subrogation
-34,Titre Médecin
-35,Tiers Payant
-36,Tiers Payant Intégral (RO+OC)
-37,Subrogation multiple
-38,TP RO + OC C2S
-99,VALEUR INCONNUE
+DRG_AFF_NAT,libelle,nb_val_jan24
+0,SANS OBJET,
+11,Assuré,4708023
+12,Adresse Provisoire,11264
+13,Conjoint divorcé,1
+14,Conjoint séparé,113
+15,Procuration,1130
+16,Tutelle,138243
+17,Veuvage,32584
+18,conjoint,573
+19,Enfant,139
+21,Autre ayant droit,16
+22,concubin,35
+23,"Ascendant, descendant",
+24,Concubin en rupture,1
+25,Bénéficaire Pacsé,24
+26,Pacs fin,
+27,A-D- RESIDENCE UE,
+31,Correspondant d'entreprise,5845
+32,Mutuelle,17
+33,Subrogation,159349
+34,Titre Médecin,2
+35,Tiers Payant,14117648
+36,Tiers Payant Intégral (RO+OC),3726566
+37,Subrogation multiple,21
+38,TP RO + OC C2S,28809
+99,VALEUR INCONNUE,15827773
