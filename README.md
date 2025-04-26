@@ -1,6 +1,6 @@
 # Projet d'exploration des données DAMIR
 
-> [Open Damir](https://www.assurance-maladie.ameli.fr/etudes-et-donnees/open-damir-depenses-sante-interregimes) : cette base de données mensuelle présente les remboursements de soins effectués par l'ensemble des régimes d'assurance maladie (base complète).
+> [Open Damir](https://www.assurance-maladie.ameli.fr/etudes-et-donnees/open-damir-depenses-sante-interregimes) : cette base de données mensuelle présente les remboursements de soins effectués par l'ensemble des régimes d'assurance maladie (base complète) en France depuis 2009.
 
 ## Ce projet
 
@@ -27,29 +27,57 @@ des **mémoires de recherche**
 - de [2018 - Lyon](https://journeesiard2019.institutdesactuaires.com/docs/mem/7b49073812c2d4775d615975e6823098.pdf) - M. MEKONTSO FOTSING
 - de [2022 - Paris Daufine](https://www.institutdesactuaires.com/docs/mem/6c8b6c92b28edf63fd916809f8e459e1.pdf) - Mme. BOYER
 
-## Figures récap - *mémoire Mme Boyer*
+> Mme BOYER a concentré son analyse sur les années 2018 & 2019 de la base Open Damir représentant 806 millions de lignes. Elle a réalisé une réduction de dimension afin d'obtenir un jeu de données plus réduit de 10 millions de lignes (cf. Figure 1 page 7)
+> ![memoire_2022_rafinementDonnees](./docs/memoire_2022_rafinementDonnees.png)
 
-> ![memoire_2022_principeRbstPrestationSante](./docs/memoire_2022_principeRbstPrestationSante.png)  <br>-> page 43
+## Documentation
 
-> ![memoire_2022_rafinementDonnees](./docs/memoire_2022_rafinementDonnees.png) <br>-> page 07
+> Au total, chaque ligne de prestation est décrite par 55 variables. - **doc Open Damir**
 
-> ![memoire_2022_axesAnalyse](./docs/memoire_2022_axesAnalyse.png) <br>-> page 51<br>
-> Pour ces six axes d’analyses, de nombreuses variables de type qualitative sont disponibles. Elles donnent des précisions sur la nature de la prestation, le type de remboursement, le lieu de résidence et l’âge du bénéficiaire, mais aussi le type de spécialité du professionnel de santé exécutant et prescripteur, et bien d’autres encore. Le nom de chaque variable ainsi que leur description sont donnés dans le tableau A.7 disponible en annexe.
+💡 [Excel](https://www.assurance-maladie.ameli.fr/content/descriptif-des-variables-de-la-serie-open-damir-base-complete) descriptif des variables Open Damir
+<br> 👉 Copié & exporté dans le dossier [dim_damir_colonnes](./dim_damir_colonnes/)
 
-> ![memoire_2022_indicateurs](./docs/memoire_2022_indicateurs.png) <br>-> page 52
+### Axes d'analyse
 
-> D’autres variables quantitatives viennent s’ajouter à ces six axes. Ce sont les indicateurs de montant et de volume des remboursements des prestations en santé
-> * [REM_BSE] la **base de remboursement** : il s’agit d’un montant défini par la Sécurité Sociale
-> * [REM_MNT] Le montant du **remboursement obligatoire** : il correspond au montant remboursé par la Sécurité Sociale (c.f. figure 1.15) `Montant remboursé = base de remboursement * quantité d’actes * taux de remboursement`
-> * [PAI_MNT] le montant de **la dépense** : ils correspondent aux frais réels, ce que coûte la prestation santé
-> * [DEP_MNT] le montant du **dépassement** : après prise en charge d’une partie des frais réels par la Sécurité Sociale, le dépassement correspond à la différence des frais réels et du montant remboursé partiellement ou intégralement. La base Open Damir contient uniquement les informations sur les remboursement de la Sécurité Sociale. Aucune information sur les remboursements des organismes complémentaires n’est indiqué.
+* **Période de traitement** & rembourserment (année / mois)
+* **Prestation** : date de soin, type d'actes ...
+* Organisme de prise en charge
+* **Bénéficiaire** du soin : sexe, age, région...
+* **Exécutant** : région, catégorie
+* **Prescripteur** : région, catégorie
+* Périmètre CMU-C
 
-> Concernant les indicateurs de volumes de la base Open Damir, il existe :
-> * [ACT_QTE] la quantité d’actes
-> * [ACT_NBR] le dénombrement d’actes - *privilégier la quantité au dénombrement parfois incomplet*
-> * [ACT_COG] le coefficient global : `quantité x coefficient tarifé de l'acte`
+### Indicateurs agrégés (volumes & montants)
+
+> ![memoire_2022_principeRbstPrestationSante](./docs/memoire_2022_principeRbstPrestationSante.png)  <br>-> page 43 mémoire Mme Boyer
+
+#### Volumes
+
+| Indicateur  | Définition   | Note |
+| :----- | :------ | :------ |
+| `ACT_QTE` | Quantité | Nb d'actes réalisés |
+| `ACT_COG` | Coefficient Global | `quantité x coefficient tarifé de l'acte` |
+| `ACT_NBR` | Dénombrement | Parfois incomplet, privilégier la quantité |
+
+#### Montants
+
+| Indicateur  | Définition   | Note |
+| :----- | :------ | :------ |
+| `PAI_MNT` | Montant de la Dépense | Frais réels de la prestation de santé |
+| `REM_BSE` | Base de Remboursement | Montant défini par la *sécu* |
+| `REM_MNT` | Montant Versé/Remboursé par la *sécu* | `REM_BSE * ACT_QTE * taux de remboursement` |
+| `DEP_MNT` | Montant du Dépassement | `PAI_MNT - REM_MNT` - les remboursements de la *sécu* uniquement |
+
+#### **Note** : indicateurs préfitrés ou non
+
+cf. [Figure 2.2 - Mémoire BOYER](./docs/memoire_2022_indicateurs.png)
+
+* `PRS_` : non préfiltré 🎯 étudier les régimes spéciaux
+* `FLT_` : préfiltré (sauf `REM_BSE`) 🎯 étudier le régime obligatoire
 
 ## 1ères explorations avec DuckDB 🦆🚀
+
+### Intérêt du `.parquet`
 
 **Qq chiffres** sur le mois de janvier 2024
 
@@ -60,22 +88,23 @@ des **mémoires de recherche**
 |`.csv`| 6.5Go |
 |`.parquet`| 1.8Go |
 
-Voici **qq commandes pratiques**
+💡 Un `.csv` doit être lu en entier pour analyser un échantillion de colonnes. A contrario, le `.parquet` range & compresse les données par colonnes. Lors d'une analyse, on ira lire uniquement les données des colonnes voulues.
 
 ```sql
 -- transformer un .csv.gz en .parquet ⏱ ~1m30
 copy ( from read_csv('input/A202401.csv.gz') )
   to 'data/A202401.parquet';
+```
 
--- ⏱ ~1m30
+```sql
+-- ⏱ ~1m30 -> stats par colonne min/max/count/...
 summarize from 'data/A202401.parquet';
 ```
 
 ![summarize_202401](docs/summarize_202401.png)
 
-## Explo rapido
+### 1ère aggrégation par date de soin
 
-en 1 min 16s : aggrégation par mois des soins de 2024 pour afficher le nb d'actes & le montant des remboursements de la sécurité sociale
+en ⏱ 1 min 16s : aggrégation par mois des soins de 2024 pour afficher le nb d'actes & le montant des remboursements de la sécurité sociale
 
 ![explore_damir_2024](./docs\explore_damir_2024.png)
-
