@@ -31,12 +31,11 @@ liste_fichiers = list_files("input/damir_csvgz", ".csv.gz")
 logger.info(f"{len(liste_fichiers)} fichiers `.csv.gz` à convertir en `.parquet`")
 
 for f in liste_fichiers:
-    logger.info(f"  {f} to .parquet")
-
-    if os.path.isfile(f.replace(".csv.gz", ".parquet")):
-        logger.info("    .parquet already there")
+    if os.path.isfile(f.replace(".csv.gz", ".parquet").replace("damir_csvgz", "damir_parquet")):
+        # logger.info("    .parquet already there")
         continue
 
+    logger.info(f"  {f} to .parquet")
     convert_csv_to_parquet(f)
 
 logger.info("fin 🎉")

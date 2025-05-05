@@ -48,8 +48,8 @@ copy (
 	  -- Indicateurs
 	    sum(PRS_ACT_QTE) PRS_ACT_QTE, -- nb d'actes effectués
 	    -- sum(PRS_ACT_NBR) PRS_ACT_NBR, -- dénombrement
-	    sum(PRS_ACT_COG)::int PRS_ACT_COG, -- PRS_ACT_QTE * coef de l'acte
-	    round(sum(PRS_ACT_COG) / sum(PRS_ACT_QTE), 1) coef_moyen,
+	    -- sum(PRS_ACT_COG)::int PRS_ACT_COG, -- PRS_ACT_QTE * coef de l'acte
+	    -- round(sum(PRS_ACT_COG) / sum(PRS_ACT_QTE), 1) coef_moyen,
 	    round(sum(PRS_PAI_MNT), 0) PRS_PAI_MNT,
 	    round(sum(PRS_REM_BSE), 0) PRS_REM_BSE,
 	    round(sum(PRS_REM_MNT), 0) PRS_REM_MNT,
