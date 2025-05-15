@@ -83,7 +83,7 @@ copy (
 -- recap des clé / libellé des axes d'analyse DAMIR
 create or replace table dim_damir as
 with cle_agg as (
-	select 
+	select
 	  dimension,
 	  count(1) nb_cle,
 	  array_agg( {'cle': cle, 'libelle': libelle} order by cle)::json[] valeurs,
@@ -91,7 +91,7 @@ with cle_agg as (
 	group by all
 ), colonnes as (
 	-- descriptions colonnes
-	SELECT 
+	SELECT
 	    lower(trim(C)) as categorie,
 	    trim(A) as dimension,
 	    trim(B) as description,

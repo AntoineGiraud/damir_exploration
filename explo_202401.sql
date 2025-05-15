@@ -1,4 +1,8 @@
 
+-----------------------------------------------------------------
+-- .csv.gz to .parquet
+-----------------------------------------------------------------
+
 -- ingestion ⏱ ~1m30
 copy (
 	select *
@@ -18,14 +22,14 @@ to 'input/A202401.csv';
 -- ⏱ ~1m30
 summarize from 'input/A202401.parquet';
 
--- tronche des données
+-- à quoi ressemblent des données
 select *
-from 'input/A202401.parquet'
+from '~/Documents\codes\damir_exploration\input\damir_parquet\2024/A202401.parquet'
 limit 100;
 
 -----------------------------------------------------------------
-
 -- faire une p'tite réduction des colonnes / variables ?!
+-----------------------------------------------------------------
 copy (
 	select
 		make_date((FLX_ANN_MOI::string)[0:4]::int, (FLX_ANN_MOI::string)[5:6]::int, 1) as date_traitement,
@@ -55,13 +59,13 @@ copy (
 	    round(sum(PRS_REM_MNT), 0) PRS_REM_MNT,
 	    round(sum(PRS_DEP_MNT), 0) PRS_DEP_MNT,
 	    count(1) nb_lignes_damir,
-	from '~/Documents\codes\damir_exploration\input\damir_parquet\2024\A202403.parquet'
+	from '~/Documents\codes\damir_exploration\input\damir_parquet\2024\A202404.parquet'
 	where SOI_ANN::int = 2024
 	  and prs_rem_typ in (0, 1) --> type rembourserement "prestation de référence"
 	GROUP BY ALL
 	order by 2,1,3
 	--limit 100
-) to '~/Documents\codes\damir_exploration\input\damir_sample\2024\A202403.parquet'
+) to '~/Documents\codes\damir_exploration\input\damir_sample\2024\A202404.parquet'
 
 -- analyse SOIN année / mois
 select
@@ -80,7 +84,7 @@ select
     round(sum(PRS_REM_MNT), 0) PRS_REM_MNT,
     round(sum(PRS_DEP_MNT), 0) PRS_DEP_MNT,
     count(1) nb_lignes_damir,
-from '~/Documents\code\damir_actes_secu\input\damir_parquet\2024/A2024*.parquet'
+from '~/Documents\codes\damir_exploration\input\damir_parquet\2024/A2024*.parquet'
 where soin_annee = 2024
   and pse_act_snds = 28 --> les orthophonistes (Libellé Nature d'Activité PS Exécutant)
   and prs_rem_typ in (0, 1) --> type rembourserement "prestation de référence"
@@ -90,10 +94,8 @@ order by 1, 2, 3, 4
 
 
 select *
-from '~/Documents\code\damir_actes_secu\input\damir_parquet\2024/A2024*.parquet'
+from '~/Documents\codes\damir_exploration\input\damir_parquet\2024/A2024*.parquet'
 --where PSE_ACT_CAT = 9
-
-
 
 -- stats par mois
 select
@@ -102,8 +104,35 @@ select
     sum (FLT_ACT_QTE) as FLT_ACT_QTE, -- nb actes
     sum (FLT_REM_MNT::int) as FLT_REM_MNT, -- remboursements sécu
     sum (if (BEN_SEX_COD=1, FLT_ACT_QTE, 0)) as FLT_ACT_QTE_homme, sum(if (BEN_SEX_COD=2, FLT_ACT_QTE, 0)) as FLT_ACT_QTE_femme,
-from read_parquet (getvariable('data_path') ||'**/A202*.parquet')
+from read_parquet ('~/Documents\codes\damir_exploration\input\damir_parquet/**/A202*.parquet')
 where SOI_ANN = 2024
     -- and pse_act_snds = 28 --> les orthophonistes (Libellé Nature d'Activité PS Exécutant)
-    and prs_rem_typ = --> type rembourserement "prestation de référence"
+--    and prs_rem_typ = 0 --> type rembourserement "prestation de référence"
 group by 1
+
+
+-----------------------------------------------------------------
+-- explo de la distribution des valeurs de qq colonnes
+-----------------------------------------------------------------
+select
+    'EXE_INS_REG' as dimension,
+    EXE_INS_REG as cle,
+    count(1) as nb_val_jan24
+from '~/Documents\codes\damir_exploration\input\damir_parquet\2024/A202401.parquet'
+group by all
+
+select
+    'ETE_TYP_SNDS' as dimension,
+    ETE_TYP_SNDS as cle,
+    count(1) as nb_val_jan24
+from '~/Documents\codes\damir_exploration\input\damir_parquet\2024/A202401.parquet'
+group by all
+
+
+-- allez, on a fait un p'tit script python pour automatiser la génération des requêtes
+-- donc on peut lire directement les résultats
+select
+  dimension,
+  cle::int cle,
+  nb_val_jan24::int cle
+from read_csv('C:\Users\Antoine.Giraud\Documents\codes\damir_exploration\dim_damir_colonnes\allez_les_voila\*.csv', sample_size = 100000)
