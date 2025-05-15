@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://favicon.io/emoji-favicons/detective/favicon.ico" type="image/x-icon">
+    <title>🕵️‍♂️ Explo colonnes Open Damir</title>
+    <!-- Lien vers le CSS de Bootstrap -->
+    <link href="https://getbootstrap.com/docs/3.4/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">🕵️‍♂️ Explo colonnes Open Damir</a>
+          </div>
+          <div id="navbar" class="navbar-collapse collapse">
+            <form class="navbar-form navbar-right">
+            </form>
+          </div><!--/.navbar-collapse -->
+        </div>
+      </nav>
+      <div class="jumbotron">
+        <div class="container">
+            <h1>🕵️‍♂️ Explo colonnes Open Damir</h1>
+            <p>Ceci est un exemple de page web explorant les 55 colonnes de la base <a href="https://www.assurance-maladie.ameli.fr/etudes-et-donnees/open-damir-depenses-sante-interregimes#text_192468">Open Damir</a> des actes de la sécurité sociale.</p>
+        </div>
+      </div>
+      <div class="container">
+        <p>To run it :</p>
+        <pre>python -m http.server 8080 --bind 127.0.0.1 --directory .</pre>
+
+        <h2>Récap haut niveau</h2>
+        <source-table
+            name="dim_damir_cleValeurCount"
+            url="http://127.0.0.1:8080/dim_damir_cle_libelle_nbValJan24.parquet"
+            columns="*">
+        </source-table>
+
+        <!--
+        <table-chart
+            table="stocks"
+            measures="count(distinct dimension) as categories, count(distinct dimension) as colonnes, count(distinct libelle) as libelles, count(distinct cle) as cles, count(1) as lignes_fichier">
+        </table-chart> -->
+
+        <div class="row">
+        <score-card class="col-md-2"
+            title="Nb categories"
+            table="dim_damir_cleValeurCount"
+            value="count(distinct categorie)">
+        </score-card>
+        <score-card class="col-md-2"
+            title="Nb colonnes"
+            table="dim_damir_cleValeurCount"
+            value="count(distinct dimension)">
+        </score-card>
+        <score-card class="col-md-2"
+            title="Nb cles"
+            table="dim_damir_cleValeurCount"
+            value="count(distinct cle)">
+        </score-card>
+        <score-card class="col-md-2"
+            title="Nb libelles"
+            table="dim_damir_cleValeurCount"
+            value="count(distinct libelle)">
+        </score-card>
+        <score-card class="col-md-2"
+            title="Nb lignes fichier dim"
+            table="dim_damir_cleValeurCount"
+            value="count(1)">
+        </score-card>
+        </div>
+
+        <h2>Récap du nb de clés par catégorie / colonne</h2>
+        <div class="row">
+        <bar-chart  class="col-md-6"
+            table="dim_damir_cleValeurCount"
+            measure="count(distinct dimension)"
+            by="categorie"
+            order_by="count(distinct dimension) desc"
+            horizontal>
+        </bar-chart>
+        <bar-chart  class="col-md-6"
+            table="dim_damir_cleValeurCount"
+            measure="count(distinct cle)"
+            by="dimension"
+            order_by="dimension"
+            horizontal>
+        </bar-chart>
+        </div>
+
+        <h2>Nb de lignes damir ayant cette colonne // clé</h2>
+        <div class="row">
+        <bar-chart  class="col-md-6"
+            table="dim_damir_cleValeurCount"
+            measure="sum(nb_val_jan24)"
+            by="cle"
+            order_by="sum(nb_val_jan24) desc"
+            limit="15"
+            horizontal>
+        </bar-chart>
+        <bar-chart  class="col-md-6"
+            table="dim_damir_cleValeurCount"
+            measure="sum(nb_val_jan24)"
+            by="left(libelle, 24)"
+            order_by="sum(nb_val_jan24) desc"
+            limit="15"
+            horizontal>
+        </bar-chart>
+        </div>
+
+
+    </div>
+    <!-- 📊 static bi -> https://github.com/unytics/static_bi -->
+    <script type="module" src="https://unytics.io/static_bi/src/connectors/duckdb.js"></script>
+    <script type="module" src="https://unytics.io/static_bi/src/components/source_tables.js"></script>
+    <script type="module" src="https://unytics.io/static_bi/src/components/echarts.js"></script>
+    <script type="module" src="https://unytics.io/static_bi/src/components/score_cards.js"></script>
+    <script type="module" src="https://unytics.io/static_bi/src/components/datatable.js"></script>
+    <script type="module" src="https://unytics.io/static_bi/src/components/date_range_picker.js"></script>
+</body>
+</html>

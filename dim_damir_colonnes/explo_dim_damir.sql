@@ -115,3 +115,18 @@ from dim_damir;
 
 -- export
 copy (select * exclude(valeurs) from dim_damir) to '~\Documents\codes\damir_exploration\dim_damir_colonnes\dim_damir.csv';
+
+
+------------------------------------------------------------------------
+-- Les colonnes & stats
+------------------------------------------------------------------------
+copy dim_damir.main.dim_damir_cle_nbValJan24 to '~\Documents\codes\damir_exploration\dim_damir_colonnes\dim_damir_cle_nbValJan24.parquet';
+
+copy (
+select
+	dim_damir.categorie,
+	dim_damir.description,
+	cle_val.*
+from '~\Documents\codes\damir_exploration\dim_damir_colonnes\dim_damir_cle_libelle_nbValJan24.csv' as cle_val
+ left join dim_damir using(dimension)
+) to '~\Documents\codes\damir_exploration\dim_damir_colonnes\dim_damir_cle_libelle_nbValJan24.parquet';
