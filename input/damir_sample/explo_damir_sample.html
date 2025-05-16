@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://favicon.io/emoji-favicons/detective/favicon.ico" type="image/x-icon">
+    <title>🕵️‍♂️ Explo colonnes Open Damir</title>
+    <!-- Lien vers le CSS de Bootstrap -->
+    <link href="https://getbootstrap.com/docs/3.4/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">🕵️‍♂️ Explo colonnes Open Damir</a>
+          </div>
+          <div id="navbar" class="navbar-collapse collapse">
+            <form class="navbar-form navbar-right">
+            </form>
+          </div><!--/.navbar-collapse -->
+        </div>
+      </nav>
+      <div class="jumbotron">
+        <div class="container">
+            <h1>🕵️‍♂️ Explo colonnes Open Damir</h1>
+            <p>Ceci est un exemple de page web explorant les 55 colonnes de la base <a href="https://www.assurance-maladie.ameli.fr/etudes-et-donnees/open-damir-depenses-sante-interregimes#text_192468">Open Damir</a> des actes de la sécurité sociale.</p>
+        </div>
+      </div>
+      <div class="container">
+        <p>To run it :</p>
+        <pre>python -m http.server 8080 --bind 127.0.0.1 --directory .</pre>
+
+        <h2>Récap haut niveau</h2>
+        <source-table
+            name="damir_sample"
+            url="http://127.0.0.1:8080/A2024.parquet"
+            columns="*">
+        </source-table>
+        <div class="row">
+        <score-card class="col-md-1" title="ETE_TYP_SNDS" table="damir_sample" value="count(distinct ETE_TYP_SNDS)"></score-card>
+        <score-card class="col-md-1" title="ETE_CAT_SNDS" table="damir_sample" value="count(distinct ETE_CAT_SNDS)"></score-card>
+        <score-card class="col-md-1" title="ETP_CAT_SNDS" table="damir_sample" value="count(distinct ETP_CAT_SNDS)"></score-card>
+        <score-card class="col-md-1" title="PSP_SPE_SNDS" table="damir_sample" value="count(distinct PSP_SPE_SNDS)"></score-card>
+        <score-card class="col-md-1" title="BEN_RES_REG" table="damir_sample" value="count(distinct BEN_RES_REG)"></score-card>
+        <score-card class="col-md-1" title="AGE_BEN_SNDS" table="damir_sample" value="count(distinct AGE_BEN_SNDS)"></score-card>
+        <score-card class="col-md-1" title="BEN_SEX_COD" table="damir_sample" value="count(distinct BEN_SEX_COD)"></score-card>
+        <score-card class="col-md-1" title="BEN_CMU_TOP" table="damir_sample" value="count(distinct BEN_CMU_TOP)"></score-card>
+        <score-card class="col-md-1" title="EXO_MTF" table="damir_sample" value="count(distinct EXO_MTF)"></score-card>
+        <score-card class="col-md-1" title="ASU_NAT" table="damir_sample" value="count(distinct ASU_NAT)"></score-card>
+        <score-card class="col-md-1" title="PRS_PPU_SEC" table="damir_sample" value="count(distinct PRS_PPU_SEC)"></score-card>
+        </div>
+
+        <line-chart
+            table="damir_sample"
+            measure="sum(PRS_ACT_QTE)"
+            by="date_soin"
+            order_by="date_soin">
+        </line-chart>
+        <line-chart
+            table="damir_sample"
+            measure="sum(PRS_ACT_QTE)"
+            by="date_traitement"
+            order_by="date_traitement">
+        </line-chart>
+
+    </div>
+    <!-- 📊 static bi -> https://github.com/unytics/static_bi -->
+    <script type="module" src="https://unytics.io/static_bi/src/connectors/duckdb.js"></script>
+    <script type="module" src="https://unytics.io/static_bi/src/components/source_tables.js"></script>
+    <script type="module" src="https://unytics.io/static_bi/src/components/echarts.js"></script>
+    <script type="module" src="https://unytics.io/static_bi/src/components/score_cards.js"></script>
+    <script type="module" src="https://unytics.io/static_bi/src/components/datatable.js"></script>
+    <script type="module" src="https://unytics.io/static_bi/src/components/date_range_picker.js"></script>
+</body>
+</html>

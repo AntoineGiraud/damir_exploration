@@ -42,6 +42,21 @@
             url="http://127.0.0.1:8080/dim_damir_cle_libelle_nbValJan24.parquet"
             columns="*">
         </source-table>
+<!--
+        <source-table
+            name="dim_damir_colonnes"
+            url="http://127.0.0.1:8080/dim_damir_cle_libelle_nbValJan24.parquet"
+            columns="*">
+        </source-table>
+
+        <source-view
+            name="vw_recap_cleValeurCount"
+            style="display: none;"
+            >
+            select *
+            from dim_damir_cleValeurCount
+                left join dim_damir_colonnes
+        </source-view> -->
 
         <!--
         <table-chart
