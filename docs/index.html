@@ -104,7 +104,7 @@
         <div class="row">
         <div class="col-md-4">
             <h3>Colonnes par catégorie</h3>
-            <bar-chart  class="col-md-4"
+            <bar-chart
                 table="dim_damir_cleValeurCount"
                 measure="count(distinct dimension)"
                 by="categorie"
@@ -114,7 +114,7 @@
         </div>
         <div class="col-md-4">
             <h3>Clés par colonne</h3>
-            <bar-chart  class="col-md-4"
+            <bar-chart
                 table="dim_damir_cleValeurCount"
                 measure="count(distinct cle)"
                 by="dimension"
@@ -124,7 +124,7 @@
         </div>
         <div class="col-md-4">
             <h3>Inconnues par colonne</h3>
-            <bar-chart  class="col-md-4"
+            <bar-chart
                 table="dim_damir_cleValeurCount"
                 title="% Valeurs inconnues"
                 measure="(100 * sum(nb_val_jan24_unknown) / sum(nb_val_jan24))::int"
