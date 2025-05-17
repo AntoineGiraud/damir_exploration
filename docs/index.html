@@ -33,10 +33,10 @@
         </div>
       </div>
       <div class="container">
-        <p>To run it :</p>
+        <p>To run it locally</p>
         <pre>python -m http.server 8080 --bind 127.0.0.1 --directory .</pre>
 
-        <h2>Récap haut niveau</h2>
+        <hr>
         <source-table
             name="dim_damir_cleValeurCount"
             url="data/dim_damir_cle_libelle_nbValJan24.parquet"
@@ -61,46 +61,34 @@
                 left join dim_damir_colonnes
         </source-view> -->
 
-        <!--
-        <table-chart
-            table="stocks"
-            measures="count(distinct dimension) as categories, count(distinct dimension) as colonnes, count(distinct libelle) as libelles, count(distinct cle) as cles, count(1) as lignes_fichier">
-        </table-chart> -->
-
         <div class="row">
         <score-card class="col-md-2"
-            title="Nb categories"
+            title="Categories"
             table="dim_damir_cleValeurCount"
             value="count(distinct categorie)">
         </score-card>
         <score-card class="col-md-2"
-            title="Nb colonnes"
+            title="Colonnes"
             table="dim_damir_cleValeurCount"
             value="count(distinct dimension)">
         </score-card>
         <score-card class="col-md-2"
-            title="Nb cles"
+            title="Cles"
             table="dim_damir_cleValeurCount"
             value="count(distinct cle)">
         </score-card>
         <score-card class="col-md-2"
-            title="Nb libelles"
+            title="Libelles"
             table="dim_damir_cleValeurCount"
             value="count(distinct libelle)">
         </score-card>
         <score-card class="col-md-2"
-            title="Nb lignes fichier dim"
+            title="% valeurs damir null"
             table="dim_damir_cleValeurCount"
-            value="count(1)">
-        </score-card>
-        <score-card class="col-md-2"
-            title="% Valeurs inconnues"
-            table="dim_damir_cleValeurCount"
-            value="(100 * sum(nb_val_jan24_unknown) / sum(nb_val_jan24))::int">
+            value="(100 * sum(nb_val_jan24_unknown) / sum(nb_val_jan24))::int::string || '%'">
         </score-card>
         </div>
 
-        <h2>Récap du nb de clés par catégorie / colonne</h2>
         <div class="row">
         <div class="col-md-4">
             <h3>Colonnes par catégorie</h3>
@@ -118,7 +106,7 @@
                 table="dim_damir_cleValeurCount"
                 measure="count(distinct cle)"
                 by="dimension"
-                order_by="dimension"
+                order_by="(100 * sum(nb_val_jan24_unknown) / sum(nb_val_jan24))::int"
                 horizontal>
             </bar-chart>
         </div>
@@ -135,7 +123,7 @@
         </div>
         </div>
 
-        <h2>Nb de lignes damir ayant cette clé / libellé</h2>
+        <h3>Nb de lignes damir par clé / libellé</h3>
         <div class="row">
         <bar-chart  class="col-md-6"
             table="dim_damir_cleValeurCount"
@@ -155,6 +143,18 @@
         </bar-chart>
         </div>
 
+        <!-- <table-chart
+            table="dim_damir_cleValeurCount"
+            measures="count(distinct categorie) as categories, count(distinct dimension) as colonnes, count(distinct libelle) as libelles, count(distinct cle) as cles, count(1) as lignes_fichier">
+        </table-chart> -->
+        <h3>Description des colonnes</h3>
+        <table-chart
+            table="dim_damir_cleValeurCount"
+            measures="(100 * sum(nb_val_jan24_unknown) / sum(nb_val_jan24))::int as taux_null"
+            by="dimension, description"
+            limit="5"
+            order_by="1,2">
+        </table-chart>
 
     </div>
     <!-- 📊 static bi -> https://github.com/unytics/static_bi -->
