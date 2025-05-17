@@ -102,31 +102,40 @@
 
         <h2>Récap du nb de clés par catégorie / colonne</h2>
         <div class="row">
-        <bar-chart  class="col-md-4"
-            table="dim_damir_cleValeurCount"
-            measure="count(distinct dimension)"
-            by="categorie"
-            order_by="count(distinct dimension) desc"
-            horizontal>
-        </bar-chart>
-        <bar-chart  class="col-md-4"
-            table="dim_damir_cleValeurCount"
-            measure="count(distinct cle)"
-            by="dimension"
-            order_by="dimension"
-            horizontal>
-        </bar-chart>
-        <bar-chart  class="col-md-4"
-            table="dim_damir_cleValeurCount"
-            title="% Valeurs inconnues"
-            measure="(100 * sum(nb_val_jan24_unknown) / sum(nb_val_jan24))::int"
-            by="dimension"
-            order_by="(100 * sum(nb_val_jan24_unknown) / sum(nb_val_jan24))::int"
-            horizontal>
-        </bar-chart>
+        <div class="col-md-4">
+            <h3>Colonnes par catégorie</h3>
+            <bar-chart  class="col-md-4"
+                table="dim_damir_cleValeurCount"
+                measure="count(distinct dimension)"
+                by="categorie"
+                order_by="count(distinct dimension) desc"
+                horizontal>
+            </bar-chart>
+        </div>
+        <div class="col-md-4">
+            <h3>Clés par colonne</h3>
+            <bar-chart  class="col-md-4"
+                table="dim_damir_cleValeurCount"
+                measure="count(distinct cle)"
+                by="dimension"
+                order_by="dimension"
+                horizontal>
+            </bar-chart>
+        </div>
+        <div class="col-md-4">
+            <h3>Inconnues par colonne</h3>
+            <bar-chart  class="col-md-4"
+                table="dim_damir_cleValeurCount"
+                title="% Valeurs inconnues"
+                measure="(100 * sum(nb_val_jan24_unknown) / sum(nb_val_jan24))::int"
+                by="dimension"
+                order_by="(100 * sum(nb_val_jan24_unknown) / sum(nb_val_jan24))::int"
+                horizontal>
+            </bar-chart>
+        </div>
         </div>
 
-        <h2>Nb de lignes damir ayant cette colonne // clé</h2>
+        <h2>Nb de lignes damir ayant cette clé / libellé</h2>
         <div class="row">
         <bar-chart  class="col-md-6"
             table="dim_damir_cleValeurCount"
